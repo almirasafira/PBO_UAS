@@ -18,6 +18,7 @@ public class AdminLogin extends javax.swing.JFrame {
      */
     public AdminLogin() {
         initComponents();
+        setTitle("LOGIN ADMIN");
     }
 
     /**
@@ -161,7 +162,7 @@ public class AdminLogin extends javax.swing.JFrame {
         if(username.equalsIgnoreCase(UsernameField.getText()) &&
             password.equals(PasswordField.getText())) {
             this.setVisible(false);
-            //new MenuUtama().setVisible(true);
+            new MenuAdmin().setVisible(true);
             javax.swing.JOptionPane.showMessageDialog(null, "ANDA BERHASIL LOGIN");
             dispose();
         } else {
