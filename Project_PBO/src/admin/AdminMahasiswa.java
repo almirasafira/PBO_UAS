@@ -167,7 +167,7 @@ public class AdminMahasiswa extends javax.swing.JFrame {
     private void koneksi (){
         try {
          Class.forName("com.mysql.jdbc.Driver");
-         con=DriverManager.getConnection("jdbc:mysql://localhost/db_pbo", "root", "");
+         con=DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_db", "root", "");
          stat=con.createStatement();
         } catch (Exception e) {
            JOptionPane.showMessageDialog(null, e);}
@@ -185,7 +185,7 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         t.addColumn("Nama Orang Tua/Wali");
         t.addColumn("No Telepon Orang Tua/Wali");
         tabel.setModel(t); 
-        try{ res= stat.executeQuery("select * from mahasiswa");
+        try{ res= stat.executeQuery("SELECT * FROM mahasiswa");
             while (res.next()) {
                 t.addRow(new Object[]{ res.getString("NISN"),
                 res.getString("Nama"),
@@ -204,7 +204,7 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         }    
     }
     
-    //Mahasiswa data = new  Mahasiswa();
+    ControlMahasiswa data = new  ControlMahasiswa();
     private void mahasiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiswaActionPerformed
         // TODO add your handling code here:
         int index = tabel.getSelectedRow();
@@ -221,12 +221,28 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         String rata = model.getValueAt(index, 7).toString();
         String namaOr = model.getValueAt(index, 8).toString();
         String notelpOr = model.getValueAt(index, 9).toString();
+        
+        data.setVisible(true);
+        data.pack();
+        data.setLocationRelativeTo(null);
+        data.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        data.nisn.setText(nisn);
+        data.nama.setText(nama);
+        data.jk.setSelectedItem(jk);
+        data.agama.setText(agama);
+        data.alamat.setText(alamat);
+        data.notelp.setText(notelp);
+        data.aslsklh.setText(aslsklh);
+        data.rata.setText(rata);
+        data.namaOr.setText(namaOr);
+        data.notelpOr.setText(notelpOr);
         dispose();
     }//GEN-LAST:event_mahasiswaActionPerformed
 
     private void mahasiwaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mahasiwaMouseClicked
         // TODO add your handling code here:
-        //new Mahasiwa().setVisible(true);
+        new ControlMahasiswa().setVisible(true);
         dispose();
     }//GEN-LAST:event_mahasiwaMouseClicked
 
@@ -244,7 +260,7 @@ public class AdminMahasiswa extends javax.swing.JFrame {
 
     private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
         // TODO add your handling code here:
-        //new Mahasiswa().setVisible(true);
+        //new ControlMahasiswa().setVisible(true);
         dispose();
     }//GEN-LAST:event_mahasiwaActionPerformed
 
