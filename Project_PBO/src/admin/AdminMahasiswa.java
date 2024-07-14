@@ -51,6 +51,7 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         admin = new javax.swing.JMenuItem();
         mahasiwa = new javax.swing.JMenuItem();
         tabelKeuangan = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,19 +88,16 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(tabelLabel)
-                        .addGap(485, 485, 485))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabelLabel)
+                .addGap(506, 506, 506))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(541, 541, 541)
                 .addComponent(mahasiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(517, 517, 517))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,10 +106,12 @@ public class AdminMahasiswa extends javax.swing.JFrame {
                 .addComponent(tabelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(33, 33, 33)
                 .addComponent(mahasiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
+
+        jMenuBar1.setBorder(null);
 
         NavMenuUtama.setText("Menu Utama");
 
@@ -146,6 +146,14 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         });
         jMenuBar1.add(tabelKeuangan);
 
+        jMenu1.setText("Kembali");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,8 +182,8 @@ public class AdminMahasiswa extends javax.swing.JFrame {
     }
     private void tabel (){
         DefaultTableModel t= new DefaultTableModel();
-        t.addColumn("Nama");
         t.addColumn("NISN");
+        t.addColumn("Nama");
         t.addColumn("Jenis Kelamin");
         t.addColumn("Agama");
         t.addColumn("Alamat");
@@ -191,12 +199,12 @@ public class AdminMahasiswa extends javax.swing.JFrame {
                 res.getString("Nama"),
                 res.getString("Jenis Kelamin"),
                 res.getString("Agama"),
+                res.getString("Alamat"),
                 res.getString("No Telepon"),
                 res.getString("Asal Sekolah"),
                 res.getString("Rata Rata Nilai"),
                 res.getString("Nama Orang Tua/Wali"),
-                res.getString("No Telepon Orang Tua/Wali"),
-                res.getString("Alamat")
+                res.getString("No Telepon Orang Tua/Wali")
                 });
             }
         }catch (Exception e) {
@@ -240,11 +248,11 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_mahasiswaActionPerformed
 
-    private void mahasiwaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mahasiwaMouseClicked
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         // TODO add your handling code here:
-        new ControlMahasiswa().setVisible(true);
+        new MenuAdmin().setVisible(true);
         dispose();
-    }//GEN-LAST:event_mahasiwaMouseClicked
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     private void tabelKeuanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelKeuanganMouseClicked
         // TODO add your handling code here:
@@ -252,17 +260,23 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_tabelKeuanganMouseClicked
 
-    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
-        // TODO add your handling code here:
-        new AdminLogin().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_adminActionPerformed
-
     private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
         // TODO add your handling code here:
         //new ControlMahasiswa().setVisible(true);
         dispose();
     }//GEN-LAST:event_mahasiwaActionPerformed
+
+    private void mahasiwaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mahasiwaMouseClicked
+        // TODO add your handling code here:
+        new ControlMahasiswa().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_mahasiwaMouseClicked
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        // TODO add your handling code here:
+        new AdminLogin().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_adminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,6 +316,7 @@ public class AdminMahasiswa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu NavMenuUtama;
     private javax.swing.JMenuItem admin;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

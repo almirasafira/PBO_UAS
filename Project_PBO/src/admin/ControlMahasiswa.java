@@ -66,11 +66,19 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         edit = new javax.swing.JButton();
         delete = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        NavMenuUtama = new javax.swing.JMenu();
+        admin = new javax.swing.JMenuItem();
+        mahasiwa = new javax.swing.JMenuItem();
+        tabelKeuangan = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 255));
 
-        jLabel3.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         jLabel3.setText("LOGIN ADMIN");
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
         nisn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +91,8 @@ public class ControlMahasiswa extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("NISN :");
 
         notelp.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -106,46 +116,68 @@ public class ControlMahasiswa extends javax.swing.JFrame {
             }
         });
 
-        simpan.setText("simpan");
+        simpan.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        simpan.setText("KEMBALI");
         simpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 simpanActionPerformed(evt);
             }
         });
 
-        search.setText("search");
+        search.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        search.setText("SEARCH");
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nama :");
 
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Jenis Kelamin :");
 
+        jLabel5.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Agama :");
 
+        jLabel6.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Alamat :");
 
+        jLabel7.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nomor Telepon :");
 
+        jLabel8.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Asal Sekolah :");
 
+        jLabel9.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Rata - rata :");
 
+        jLabel10.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nama Orang Tua/Wali :");
 
+        jLabel11.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Nomor Telepon Tua/Wali :");
 
-        edit.setText("edit");
+        edit.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        edit.setText("EDIT");
         edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editActionPerformed(evt);
             }
         });
 
-        delete.setText("delete");
+        delete.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        delete.setText("HAPUS");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
@@ -261,6 +293,41 @@ public class ControlMahasiswa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        NavMenuUtama.setText("Menu Utama");
+
+        admin.setText("Admin");
+        admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminActionPerformed(evt);
+            }
+        });
+        NavMenuUtama.add(admin);
+
+        mahasiwa.setText("Mahasiwa");
+        mahasiwa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mahasiwaMouseClicked(evt);
+            }
+        });
+        mahasiwa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mahasiwaActionPerformed(evt);
+            }
+        });
+        NavMenuUtama.add(mahasiwa);
+
+        jMenuBar1.add(NavMenuUtama);
+
+        tabelKeuangan.setText("Tabel Keuangan");
+        tabelKeuangan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelKeuanganMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(tabelKeuangan);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -277,7 +344,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,55 +399,43 @@ public class ControlMahasiswa extends javax.swing.JFrame {
 
     private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
         // TODO add your handling code here:
-        try {
-            stat.executeUpdate("insert into mahasiswa values ("
-                + "'" + nisn.getText()+"',"
-                + "'" + nama.getText()+"',"
-                + "'" + jk.getSelectedItem()+ "',"
-                + "'" + agama.getText()+"',"
-                + "'" + alamat.getText()+"',"
-                + "'" + notelp.getText()+"',"
-                + "'" + aslsklh.getText()+"',"
-                + "'" + rata.getText()+"',"
-                + "'" + namaOr.getText()+"',"
-                + "'" + notelpOr.getText()+"')");
-            kosongkan();
-            JOptionPane.showMessageDialog(null, "Berhasil Menyimpan Data");
-            new ControlMahasiswa().setVisible(true);
-            dispose();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Gagal Menyimpan Data! : "+e);
-        }
+        new AdminMahasiswa().setVisible(true);
+        dispose();
     }//GEN-LAST:event_simpanActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         // TODO add your handling code here:
-        int ok=JOptionPane.showConfirmDialog(null,"Apakah yakin ingin mengedit data?","Confirmation",
-JOptionPane.YES_NO_OPTION);
-        try{
-            String sql = "UPDATE mahasiswa SET NISN=?,Nama`=?,Jenis Kelamin=?,Agama=[value-4],No Telepon=?,Asal Sekolah=?,Rata Rata Nilai=?,Nama Orang Tua/Wali=?,No Telepon Orang Tua/Wali=?,Alamat=? WHERE 1 where NISN='" + nisn.getText()+"'";
-            PreparedStatement st=con.prepareStatement(sql);
-            if(ok==0) {
-                try{
-                    st.setString(1,nisn.getText());
-                    st.setString(2,nama.getText());
-                    st.setString(3,(String)jk.getSelectedItem());
-                    st.setString(4,agama.getText());
-                    st.setString(4,notelp.getText());
-                    st.setString(5,aslsklh.getText());
-                    st.setString(5,rata.getText());
-                    st.setString(5,namaOr.getText());
-                    st.setString(5,notelpOr.getText());
-                    st.executeUpdate();
+        int ok = JOptionPane.showConfirmDialog(null, "Apakah yakin ingin mengedit data?", "Confirmation",
+        JOptionPane.YES_NO_OPTION);
+        if (ok == 0) {
+            try {
+                String sql = "UPDATE mahasiswa SET `NISN`=?, `Nama`=?, `Jenis Kelamin`=?, `Agama`=?, `Alamat`=?, `No Telepon`=?, `Asal Sekolah`=?, `Rata Rata Nilai`=?, `Nama Orang Tua/Wali`=?, `No Telepon Orang Tua/Wali`=?";
+                PreparedStatement st = con.prepareStatement(sql);
+
+                st.setString(1, nisn.getText());
+                st.setString(2, nama.getText());
+                st.setString(3, (String) jk.getSelectedItem());
+                st.setString(4, agama.getText());
+                st.setString(5, alamat.getText());
+                st.setString(6, notelp.getText());
+                st.setString(7, aslsklh.getText());
+                st.setString(8, rata.getText());
+                st.setString(9, namaOr.getText());
+                st.setString(10, notelpOr.getText());
+                int rowsUpdated = st.executeUpdate();
+                if (rowsUpdated > 0) {
                     kosongkan();
-                    JOptionPane.showMessageDialog(null,"Edit Data Sukses");
-                    new ControlMahasiswa().setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Edit Data Sukses");
+                    new AdminMahasiswa().setVisible(true);
                     dispose();
-                }catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Edit Data Gagal");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Data tidak ditemukan atau tidak ada perubahan");
                 }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Edit Data Gagal: " + e.getMessage());
+                e.printStackTrace();
             }
-        }catch (Exception e){}        
+        }
     }//GEN-LAST:event_editActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
@@ -394,7 +449,7 @@ JOptionPane.YES_NO_OPTION);
                 st.executeUpdate();
                 kosongkan();
                 JOptionPane.showMessageDialog(null, "Delete Data Sukses");
-                new ControlMahasiswa().setVisible(true);
+                new AdminMahasiswa().setVisible(true);
                 dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Delete Data Gagal");
@@ -458,6 +513,30 @@ JOptionPane.YES_NO_OPTION);
         }
     }//GEN-LAST:event_notelpOrKeyTyped
 
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        // TODO add your handling code here:
+        new AdminLogin().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_adminActionPerformed
+
+    private void mahasiwaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mahasiwaMouseClicked
+        // TODO add your handling code here:
+        new ControlMahasiswa().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_mahasiwaMouseClicked
+
+    private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
+        // TODO add your handling code here:
+        //new ControlMahasiswa().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_mahasiwaActionPerformed
+
+    private void tabelKeuanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelKeuanganMouseClicked
+        // TODO add your handling code here:
+        //new AdminKeuangan().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_tabelKeuanganMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -495,6 +574,8 @@ JOptionPane.YES_NO_OPTION);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu NavMenuUtama;
+    private javax.swing.JMenuItem admin;
     public javax.swing.JTextField agama;
     public javax.swing.JTextField alamat;
     public javax.swing.JTextField aslsklh;
@@ -511,8 +592,10 @@ JOptionPane.YES_NO_OPTION);
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JComboBox<String> jk;
+    private javax.swing.JMenuItem mahasiwa;
     public javax.swing.JTextField nama;
     public javax.swing.JTextField namaOr;
     public javax.swing.JTextField nisn;
@@ -521,5 +604,6 @@ JOptionPane.YES_NO_OPTION);
     public javax.swing.JTextField rata;
     private javax.swing.JButton search;
     private javax.swing.JButton simpan;
+    private javax.swing.JMenu tabelKeuangan;
     // End of variables declaration//GEN-END:variables
 }
