@@ -4,24 +4,14 @@
  */
 package Mahasiswa;
 
-package Project_PBO;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
+import java.sql.*;
 /**
  *
  * @author ASUS
  */
 public class formMahasiswa extends javax.swing.JFrame {
-    private Connection con;
+    private Connection conn;
     private Statement stat;
-    private ResulSet res;
 
     /**
      * Creates new form formMahasiswa
@@ -34,27 +24,25 @@ public class formMahasiswa extends javax.swing.JFrame {
     }
   
     private void koneksi(){
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://127.0.0.1/db_pbo","root","");
-            stat=con.createStatement();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+        try {
+            String url = "jdbc:mysql://127.0.0.1/pbo_uas";
+            String user = "root";
+            String password = "";
+            conn = DriverManager.getConnection(url, user, password);
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
     private void kosongkan(){
-        Nama.setText("");
-        NISN.setText("");
-        Jenis_Kelamin.setText("");
-        Alamat.setText("");
-        Agama.setText("");
-        Asal_sekolah.setText("");
-        Nama_org_tua.setText("");
-        No_org_tua.setText("");
-        Rata_nilai.setText("");
-        No_HP.setText("");
-    }
+        try {
+            if (conn != null) {
+                conn.close();
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,6 +73,7 @@ public class formMahasiswa extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jk = new javax.swing.JComboBox<>();
+        Simpan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(184, 10, 165));
@@ -142,6 +131,8 @@ public class formMahasiswa extends javax.swing.JFrame {
         jk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perempuan", "Laki-laki" }));
         jk.setSelectedIndex(-1);
 
+        Simpan.setText("Simpan");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -188,6 +179,10 @@ public class formMahasiswa extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(326, 326, 326)
+                .addComponent(Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +221,9 @@ public class formMahasiswa extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Rata_nilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(251, 251, 251))
+                .addGap(55, 55, 55)
+                .addComponent(Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(153, 153, 153))
         );
 
         pack();
@@ -254,17 +251,19 @@ public class formMahasiswa extends javax.swing.JFrame {
 
     private void NISNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NISNActionPerformed
         // TODO add your handling code here:
-        try{
-                        res=stat.executeQuery("select * from mahasiswa where "+ "NISN='" + NISN.getText()
+                try{
+            res=stat.executeQuery("select * from mahasiswa where "+ "Nim='" + NISN.getText()
                 +"'" ); while (res.next())
                 { Nama.setText(res.getString("Nama"));
                 Jenis_Kelamin.setSelectedItem(res.getString("JenisKelamin"));
-                No_HP.setText(res.getString("NoHP"));
+                No_HP.setText(res.getString("NoHp"));
                 Alamat.setText(res.getString("Alamat"));
+                Agama.setText(res.getString("Agama"));
+                Asal_sekolah.setText(res.getString("Asal Sekolah"));
                 }    
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e);
-        }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }     
     }//GEN-LAST:event_NISNActionPerformed
 
     /**
@@ -313,6 +312,7 @@ public class formMahasiswa extends javax.swing.JFrame {
     public javax.swing.JTextField No_HP;
     public javax.swing.JTextField No_org_tua;
     public javax.swing.JTextField Rata_nilai;
+    private javax.swing.JButton Simpan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
