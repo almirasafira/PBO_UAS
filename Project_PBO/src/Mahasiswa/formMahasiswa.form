@@ -30,60 +30,60 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="326" max="-2" attributes="0"/>
-                      <Component id="Simpan" min="-2" pref="102" max="-2" attributes="0"/>
+                      <Component id="simpan" min="-2" pref="102" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="Nama" min="-2" pref="67" max="-2" attributes="0"/>
+                              <Component id="NAMA" min="-2" pref="67" max="-2" attributes="0"/>
                               <Component id="NISN" alignment="1" min="-2" pref="71" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel1" min="-2" pref="80" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Alamat" alignment="1" pref="72" max="32767" attributes="0"/>
-                              <Component id="Agama" alignment="1" max="32767" attributes="0"/>
+                              <Component id="ALAMAT" alignment="1" pref="72" max="32767" attributes="0"/>
+                              <Component id="AGAMA" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jk" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                          <Component id="textfieldNama" alignment="0" pref="210" max="32767" attributes="0"/>
+                          <Component id="nama" alignment="0" pref="210" max="32767" attributes="0"/>
                           <Component id="nisn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="textFieldAgama" max="32767" attributes="0"/>
-                          <Component id="textFieldAlamat" alignment="0" max="32767" attributes="0"/>
+                          <Component id="agama" max="32767" attributes="0"/>
+                          <Component id="alamat" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel7" min="-2" pref="96" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="No_HP" min="-2" pref="193" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="notelp" min="-2" pref="193" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="labelNamaOrgTua" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Nama_org_tua" min="-2" pref="194" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel10" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Asal_sekolah" max="32767" attributes="0"/>
+                              <Component id="namaOr" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="No_org_tua" min="-2" pref="193" max="-2" attributes="0"/>
+                              <Component id="notelpOr" min="-2" pref="193" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel10" min="-2" pref="95" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="aslsklh" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel8" min="-2" pref="94" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Rata_nilai" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="rata" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="75" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,25 +92,27 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Nama" alignment="3" max="32767" attributes="0"/>
-                  <Component id="textfieldNama" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="NAMA" alignment="3" max="32767" attributes="0"/>
+                  <Component id="nama" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelNamaOrgTua" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="Nama_org_tua" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="namaOr" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="NISN" alignment="3" max="32767" attributes="0"/>
                   <Component id="nisn" alignment="3" max="32767" attributes="0"/>
                   <Component id="jLabel9" alignment="3" max="32767" attributes="0"/>
-                  <Component id="No_org_tua" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="notelpOr" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel10" alignment="1" max="32767" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="jLabel10" alignment="3" max="32767" attributes="0"/>
+                      <Component id="aslsklh" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jk" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Asal_sekolah" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -118,33 +120,35 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                          <Component id="No_HP" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="notelp" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Agama" alignment="3" max="32767" attributes="0"/>
-                      <Component id="textFieldAgama" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="AGAMA" alignment="3" max="32767" attributes="0"/>
+                      <Component id="agama" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel8" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="jLabel8" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="rata" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Alamat" alignment="3" max="32767" attributes="0"/>
-                      <Component id="textFieldAlamat" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Rata_nilai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ALAMAT" alignment="3" max="32767" attributes="0"/>
+                      <Component id="alamat" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-              <Component id="Simpan" min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <Component id="simpan" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="textfieldNama">
+    <Component class="javax.swing.JTextField" name="nama">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -158,51 +162,51 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldAgama">
+    <Component class="javax.swing.JTextField" name="agama">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="textFieldAlamat">
+    <Component class="javax.swing.JTextField" name="alamat">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="Nama_org_tua">
+    <Component class="javax.swing.JTextField" name="namaOr">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="No_org_tua">
+    <Component class="javax.swing.JTextField" name="notelpOr">
       <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="No_org_tuaKeyTyped"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="notelpOrKeyTyped"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="Asal_sekolah">
+    <Component class="javax.swing.JTextField" name="aslsklh">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="Rata_nilai">
+    <Component class="javax.swing.JTextField" name="rata">
       <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Rata_nilaiKeyTyped"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rataKeyTyped"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="No_HP">
+    <Component class="javax.swing.JTextField" name="notelp">
       <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="No_HPKeyTyped"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="notelpKeyTyped"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="Nama">
+    <Component class="javax.swing.JLabel" name="NAMA">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nama"/>
       </Properties>
@@ -212,20 +216,20 @@
         <Property name="text" type="java.lang.String" value="NISN"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Alamat">
+    <Component class="javax.swing.JLabel" name="ALAMAT">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alamat"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Agama">
+    <Component class="javax.swing.JLabel" name="AGAMA">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agama"/>
-        <Property name="name" type="java.lang.String" value="Agama" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="AGAMA" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="No. HP"/>
+        <Property name="text" type="java.lang.String" value="No. Telepon"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
@@ -235,7 +239,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
-        <Property name="text" type="java.lang.String" value="No HP. Orang Tua"/>
+        <Property name="text" type="java.lang.String" value="No HP. Orang Tua/Wali"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
@@ -245,7 +249,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelNamaOrgTua">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nama Orang Tua "/>
+        <Property name="text" type="java.lang.String" value="Nama Orang Tua/Wali"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jk">
@@ -262,12 +266,12 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="Simpan">
+    <Component class="javax.swing.JButton" name="simpan">
       <Properties>
         <Property name="text" type="java.lang.String" value="Simpan"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SimpanActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
