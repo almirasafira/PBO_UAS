@@ -4,7 +4,7 @@
  */
 package Mahasiswa;
 
-import Mahasiswa.formMahasiswa;
+//import admin.AdminMahasiswa;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -252,24 +252,26 @@ public class formMahasiswa extends javax.swing.JFrame {
     private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
         // TODO add your handling code here:
         try {
-         stat.executeUpdate("insert into mahasiswa values ("
-             + "'" + nisn.getText()+"',"
-             + "'" + nama.getText()+"',"
-             + "'" + jk.getSelectedItem()+ "',"
-             + "'" + agama.getText()+"')"
-             + "'" + alamat.getText()+"')"
-             + "'" + notelp.getText()+"')"
-             + "'" + aslsklh.getText()+"')"
-             + "'" + rata.getText()+"')"
-             + "'" + namaOr.getText()+"')"
-             + "'" + notelpOr.getText()+"')");
-         kosongkan();
+            stat = con.createStatement();
+            String sql = "INSERT INTO mahasiswa (NISN, Nama, `Jenis Kelamin`, Agama, `Nomor Telepon`, `Asal Sekolah`, `Rata`, `Nama Orang Tua/Wali`, `Nomor Orang Tua/Wali`, Alamat) VALUES ("
+             + "'" + nisn.getText() + "', "
+             + "'" + nama.getText() + "', "
+             + "'" + jk.getSelectedItem() + "', "
+             + "'" + agama.getText() + "', "
+             + "'" + notelp.getText() + "', "
+             + "'" + aslsklh.getText() + "', "
+             + "'" + rata.getText() + "', "
+             + "'" + namaOr.getText() + "', "
+             + "'" + notelpOr.getText() + "', "
+             + "'" + alamat.getText() + "')";
+            stat.executeUpdate(sql);
+            kosongkan();
             JOptionPane.showMessageDialog(null, "Berhasil Menyimpan Data");
             new formMahasiswa().setVisible(true);
             dispose();
-         } catch (Exception e) {
-         JOptionPane.showMessageDialog(null, "Gagal Menyimpan Data! : "+e);
-        }  
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Gagal Menyimpan Data! : " + e);
+        }
     }//GEN-LAST:event_simpanActionPerformed
 
     private void nisnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nisnKeyTyped
@@ -311,25 +313,28 @@ public class formMahasiswa extends javax.swing.JFrame {
     private void nisnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nisnActionPerformed
         // TODO add your handling code here:
         try {
-            stat = con.createStatement();
-            String sql = "INSERT INTO mahasiswa (NISN, Nama, Jenis Kelamin, Agama, No Telepon, Asal Sekolah, Rata Rata Nilai, Nama Orang Tua/Wali, No Telepon Orang Tua/Wali, Alamat) VALUES ("
-             + "'" + nisn.getText() + "', "
-             + "'" + nama.getText() + "', "
-             + "'" + jk.getSelectedItem() + "', "
-             + "'" + agama.getText() + "', "
-             + "'" + notelp.getText() + "', "
-             + "'" + aslsklh.getText() + "', "
-             + "'" + rata.getText() + "', "
-             + "'" + namaOr.getText() + "', "
-             + "'" + notelpOr.getText() + "', "
-             + "'" + alamat.getText() + "')";
-            stat.executeUpdate(sql);
-            kosongkan();
-            JOptionPane.showMessageDialog(null, "Berhasil Menyimpan Data");
-            new formMahasiswa().setVisible(true);
-            dispose();
-        } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Gagal Menyimpan Data! : " + e);
+            String query = "SELECT * FROM mahasiswa WHERE NISN = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, nisn.getText());
+
+            ResultSet res = pst.executeQuery();
+            while (res.next()) {
+            nama.setText(res.getString("Nama"));
+            jk.setSelectedItem(res.getString("Jenis Kelamin"));
+            agama.setText(res.getString("Agama"));
+            alamat.setText(res.getString("Alamat"));
+            notelp.setText(res.getString("Nomor Telepon"));
+            aslsklh.setText(res.getString("Asal Sekolah"));
+            rata.setText(res.getString("Rata"));
+            namaOr.setText(res.getString("Nama Orang Tua/Wali"));
+            notelpOr.setText(res.getString("Nomor Orang Tua/Wali"));
+            }
+
+        // Tutup ResultSet dan PreparedStatement
+        res.close();
+        pst.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(rootPane, "Database error: " + e.getMessage());
         }
     }//GEN-LAST:event_nisnActionPerformed
 
