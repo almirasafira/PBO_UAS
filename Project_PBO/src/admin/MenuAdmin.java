@@ -30,7 +30,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         tabelMahasiswaLabel = new javax.swing.JLabel();
         tabelMahasiswa = new javax.swing.JPanel();
-        keuangan = new javax.swing.JPanel();
+        cari = new javax.swing.JPanel();
         keuanganLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -63,26 +63,26 @@ public class MenuAdmin extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        keuangan.addMouseListener(new java.awt.event.MouseAdapter() {
+        cari.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                keuanganMouseClicked(evt);
+                cariMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout keuanganLayout = new javax.swing.GroupLayout(keuangan);
-        keuangan.setLayout(keuanganLayout);
-        keuanganLayout.setHorizontalGroup(
-            keuanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout cariLayout = new javax.swing.GroupLayout(cari);
+        cari.setLayout(cariLayout);
+        cariLayout.setHorizontalGroup(
+            cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        keuanganLayout.setVerticalGroup(
-            keuanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        cariLayout.setVerticalGroup(
+            cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
         keuanganLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         keuanganLabel.setForeground(new java.awt.Color(255, 255, 255));
-        keuanganLabel.setText("KEUANGAN");
+        keuanganLabel.setText("PENCARIAN");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -95,13 +95,13 @@ public class MenuAdmin extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(tabelMahasiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addComponent(keuangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(tabelMahasiswaLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(keuanganLabel)
-                        .addGap(57, 57, 57))))
+                        .addGap(61, 61, 61))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +112,7 @@ public class MenuAdmin extends javax.swing.JFrame {
                     .addComponent(keuanganLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(keuangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tabelMahasiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -174,11 +174,11 @@ public class MenuAdmin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_tabelMahasiswaMouseClicked
 
-    private void keuanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keuanganMouseClicked
+    private void cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariMouseClicked
         // TODO add your handling code here:
-        //new AdminKeuangan().setVisible(true);
+        new ControlMahasiswa().setVisible(true);
         dispose();
-    }//GEN-LAST:event_keuanganMouseClicked
+    }//GEN-LAST:event_cariMouseClicked
 
     private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
         // TODO add your handling code here:
@@ -230,10 +230,10 @@ public class MenuAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu NavMenuUtama;
     private javax.swing.JMenuItem admin;
+    private javax.swing.JPanel cari;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel keuangan;
     private javax.swing.JLabel keuanganLabel;
     private javax.swing.JMenuItem mahasiwa;
     private javax.swing.JPanel tabelMahasiswa;

@@ -28,14 +28,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="tabelKeuangan">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Tabel Keuangan"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelKeuanganMouseClicked"/>
-          </Events>
-        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
@@ -421,7 +413,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Rata - rata :"/>
+            <Property name="text" type="java.lang.String" value="Rata - rata Nilai :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
