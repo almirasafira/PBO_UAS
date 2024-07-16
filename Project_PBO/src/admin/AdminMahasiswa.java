@@ -50,8 +50,7 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         NavMenuUtama = new javax.swing.JMenu();
         admin = new javax.swing.JMenuItem();
         mahasiwa = new javax.swing.JMenuItem();
-        tabelKeuangan = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        kembali = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,21 +137,13 @@ public class AdminMahasiswa extends javax.swing.JFrame {
 
         jMenuBar1.add(NavMenuUtama);
 
-        tabelKeuangan.setText("Tabel Keuangan");
-        tabelKeuangan.addMouseListener(new java.awt.event.MouseAdapter() {
+        kembali.setText("Kembali");
+        kembali.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelKeuanganMouseClicked(evt);
+                kembaliMouseClicked(evt);
             }
         });
-        jMenuBar1.add(tabelKeuangan);
-
-        jMenu1.setText("Kembali");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(kembali);
 
         setJMenuBar(jMenuBar1);
 
@@ -248,17 +239,11 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_mahasiswaActionPerformed
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked
         // TODO add your handling code here:
         new MenuAdmin().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jMenu1MouseClicked
-
-    private void tabelKeuanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelKeuanganMouseClicked
-        // TODO add your handling code here:
-        //new AdminKeuangan().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_tabelKeuanganMouseClicked
+    }//GEN-LAST:event_kembaliMouseClicked
 
     private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
         // TODO add your handling code here:
@@ -316,14 +301,13 @@ public class AdminMahasiswa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu NavMenuUtama;
     private javax.swing.JMenuItem admin;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu kembali;
     private javax.swing.JButton mahasiswa;
     private javax.swing.JMenuItem mahasiwa;
     private javax.swing.JTable tabel;
-    private javax.swing.JMenu tabelKeuangan;
     private javax.swing.JLabel tabelLabel;
     // End of variables declaration//GEN-END:variables
 }

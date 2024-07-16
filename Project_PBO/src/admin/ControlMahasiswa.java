@@ -70,7 +70,6 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         NavMenuUtama = new javax.swing.JMenu();
         admin = new javax.swing.JMenuItem();
         mahasiwa = new javax.swing.JMenuItem();
-        tabelKeuangan = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -158,7 +157,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Rata - rata :");
+        jLabel9.setText("Rata - rata Nilai :");
 
         jLabel10.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -318,14 +317,6 @@ public class ControlMahasiswa extends javax.swing.JFrame {
 
         jMenuBar1.add(NavMenuUtama);
 
-        tabelKeuangan.setText("Tabel Keuangan");
-        tabelKeuangan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelKeuanganMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(tabelKeuangan);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -459,22 +450,30 @@ public class ControlMahasiswa extends javax.swing.JFrame {
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
-        try {
-            res=stat.executeQuery("select * from mahasiswa where "+ "NISN='" +nisn.getText() +"'" ); while (res.next())
-                { 
-                    nama.setText(res.getString("Nama"));
-                    jk.setSelectedItem(res.getString("Jenis Kelamin"));
-                    agama.setText(res.getString("Agama"));
-                    alamat.setText(res.getString("Alamat"));
-                    notelp.setText(res.getString("Nomor Telepon"));
-                    aslsklh.setText(res.getString("Asal Sekolah"));
-                    rata.setText(res.getString("Rata"));
-                    namaOr.setText(res.getString("Nama Orang Tua/Wali"));
-                    notelpOr.setText(res.getString("Nomor Orang Tua/Wali"));
-                }
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e);
+    try {
+        // Mengambil data dari database berdasarkan NISN yang diinputkan
+        res = stat.executeQuery("SELECT * FROM mahasiswa WHERE NISN = '" + nisn.getText() + "'");
+        
+        // Memeriksa apakah ada hasil dari query
+        if (res.next()) { 
+            // Mengatur nilai komponen sesuai dengan hasil query
+            nama.setText(res.getString("Nama"));
+            jk.setSelectedItem(res.getString("Jenis Kelamin"));
+            agama.setText(res.getString("Agama"));
+            alamat.setText(res.getString("Alamat"));
+            notelp.setText(res.getString("No Telepon"));
+            aslsklh.setText(res.getString("Asal Sekolah"));
+            rata.setText(res.getString("Rata Rata Nilai"));
+            namaOr.setText(res.getString("Nama Orang Tua/Wali"));
+            notelpOr.setText(res.getString("No Telepon Orang Tua/Wali"));
+        } else {
+            // Menampilkan pesan jika NISN tidak ditemukan
+            JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan!");
         }
+    } catch (Exception e) {
+        // Menampilkan pesan error jika terjadi kesalahan
+        JOptionPane.showMessageDialog(rootPane, e);
+    }
     }//GEN-LAST:event_searchActionPerformed
 
     private void nisnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nisnKeyTyped
@@ -530,12 +529,6 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         //new ControlMahasiswa().setVisible(true);
         dispose();
     }//GEN-LAST:event_mahasiwaActionPerformed
-
-    private void tabelKeuanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelKeuanganMouseClicked
-        // TODO add your handling code here:
-        //new AdminKeuangan().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_tabelKeuanganMouseClicked
 
     /**
      * @param args the command line arguments
@@ -604,6 +597,5 @@ public class ControlMahasiswa extends javax.swing.JFrame {
     public javax.swing.JTextField rata;
     private javax.swing.JButton search;
     private javax.swing.JButton simpan;
-    private javax.swing.JMenu tabelKeuangan;
     // End of variables declaration//GEN-END:variables
 }

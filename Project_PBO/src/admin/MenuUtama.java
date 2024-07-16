@@ -4,6 +4,8 @@
  */
 package admin;
 
+import Mahasiswa.formMahasiswa;
+
 /**
  *
  * @author user
@@ -149,7 +151,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void mahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mahasiswaMouseClicked
         // TODO add your handling code here:
-        //new Mahasiswa().setVisible(true);
+        new Mahasiswa().setVisible(true);
         dispose();
     }//GEN-LAST:event_mahasiswaMouseClicked
 
