@@ -154,7 +154,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="simpan" min="-2" max="-2" attributes="0"/>
+                          <Component id="kembali" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="edit" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -221,7 +221,7 @@
                   </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="simpan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="kembali" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="edit" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="delete" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -291,11 +291,12 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
-                <StringItem index="0" value="perempuan"/>
-                <StringItem index="1" value="laki-laki"/>
+                <StringItem index="0" value="Perempuan"/>
+                <StringItem index="1" value="Laki-laki"/>
               </StringArray>
             </Property>
             <Property name="selectedIndex" type="int" value="-1"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -315,7 +316,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="simpan">
+        <Component class="javax.swing.JButton" name="kembali">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Malgun Gothic" size="12" style="1"/>
@@ -323,7 +324,7 @@
             <Property name="text" type="java.lang.String" value="KEMBALI"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kembaliActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">

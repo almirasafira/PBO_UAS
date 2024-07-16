@@ -4,31 +4,32 @@
  */
 package admin;
 
-import javax.swing.JOptionPane;
+import javax.swing.JOptionPane; //pesan dialog
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 
 /**
  *
  * @author user
  */
+//deklarasi
 public class AdminLogin extends javax.swing.JFrame {
-
-        private Connection con;
+        private Connection con; //variabel
 
     /**
      * Creates new form AdminLogin
      */
+    //Konstruktor
     public AdminLogin() {
         initComponents();
         setTitle("LOGIN ADMIN");
-        koneksi();
+        koneksi(); // Menginisialisasi koneksi saat form dibuat
     }
+    //method
     private void koneksi() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -151,7 +152,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
          // TODO add your handling code here:
         String username = UsernameField.getText();
@@ -165,7 +166,7 @@ public class AdminLogin extends javax.swing.JFrame {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                this.setVisible(false);
+                this.setVisible(false); //pemeriksa
                 new MenuAdmin().setVisible(true);
                 JOptionPane.showMessageDialog(null, "ANDA BERHASIL LOGIN");
                 dispose();
@@ -182,7 +183,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void KembaliButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliButtonActionPerformed
         // TODO add your handling code here:
-        new MenuUtama().setVisible(true);
+        new MenuUtama().setVisible(true); //membuat instance
         dispose();
     }//GEN-LAST:event_KembaliButtonActionPerformed
 
@@ -232,4 +233,3 @@ public class AdminLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
-

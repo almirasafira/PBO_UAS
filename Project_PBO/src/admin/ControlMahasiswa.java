@@ -18,13 +18,15 @@ import javax.swing.JOptionPane;
  *
  * @author user
  */
+//deklarasi
 public class ControlMahasiswa extends javax.swing.JFrame {
-    private Connection con;
+    private Connection con;//variabel
     private Statement stat;
     private ResultSet res;
     /**
      * Creates new form Mahasiswa
      */
+    //konstruktor
     public ControlMahasiswa() {
         initComponents();
         setTitle("FORM MAHASISWA");
@@ -54,7 +56,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         jk = new javax.swing.JComboBox<>();
         namaOr = new javax.swing.JTextField();
         notelpOr = new javax.swing.JTextField();
-        simpan = new javax.swing.JButton();
+        kembali = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -106,8 +108,9 @@ public class ControlMahasiswa extends javax.swing.JFrame {
             }
         });
 
-        jk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "perempuan", "laki-laki" }));
+        jk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Perempuan", "Laki-laki" }));
         jk.setSelectedIndex(-1);
+        jk.setToolTipText("");
 
         notelpOr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -115,11 +118,11 @@ public class ControlMahasiswa extends javax.swing.JFrame {
             }
         });
 
-        simpan.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
-        simpan.setText("KEMBALI");
-        simpan.addActionListener(new java.awt.event.ActionListener() {
+        kembali.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        kembali.setText("KEMBALI");
+        kembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                simpanActionPerformed(evt);
+                kembaliActionPerformed(evt);
             }
         });
 
@@ -224,7 +227,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
                         .addComponent(namaOr, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(simpan)
+                        .addComponent(kembali)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -277,7 +280,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(simpan)
+                    .addComponent(kembali)
                     .addComponent(edit)
                     .addComponent(delete))
                 .addGap(22, 22, 22))
@@ -330,14 +333,16 @@ public class ControlMahasiswa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void koneksi (){
+    //method
+    private void koneksi() {
         try {
-         Class.forName("com.mysql.jdbc.Driver");
-         con=DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_uas", "root", "");
-         stat=con.createStatement();
-        } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, e);}
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_uas", "root", "");
+            stat = con.createStatement();
+            System.out.println("Koneksi berhasil!");
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Koneksi gagal: " + e.getMessage());
+        }
     }
     private void kosongkan(){
         nisn.setText("");
@@ -373,11 +378,11 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nisnActionPerformed
 
-    private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
+    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
         // TODO add your handling code here:
-        new AdminMahasiswa().setVisible(true);
+        new AdminMahasiswa().setVisible(true);//membuat instance
         dispose();
-    }//GEN-LAST:event_simpanActionPerformed
+    }//GEN-LAST:event_kembaliActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         // TODO add your handling code here:
@@ -385,7 +390,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         JOptionPane.YES_NO_OPTION);
         if (ok == 0) {
             try {
-                String sql = "UPDATE mahasiswa SET `NISN`=?, `Nama`=?, `JenisKelamin`=?, `Agama`=?, `Alamat`=?, `NoHp`=?, `AsalSekolah`=?, `RataRataNilai`=?, `NamaOrangTua`=?, `NoOrangTua`=?";
+                String sql = "UPDATE mahasiswa SET `NISN`=?, `Nama`=?, `JenisKelamin`=?, `Agama`=?, `Alamat`=?, `NoHp`=?, `AsalSekolah`=?, `RataRataNilai`=?, `NamaOrangTua`=?, `NoOrangTua`=? WHERE NISN=?";
                 PreparedStatement st = con.prepareStatement(sql);
 
                 st.setString(1, nisn.getText());
@@ -398,6 +403,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
                 st.setString(8, rata.getText());
                 st.setString(9, namaOr.getText());
                 st.setString(10, notelpOr.getText());
+                st.setString(11, nisn.getText());
                 int rowsUpdated = st.executeUpdate();
                 if (rowsUpdated > 0) {
                     kosongkan();
@@ -471,7 +477,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
 
     private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
         // TODO add your handling code here:
-        new AdminLogin().setVisible(true);
+        new AdminLogin().setVisible(true);//membuat instance
         dispose();
     }//GEN-LAST:event_adminActionPerformed
 
@@ -539,6 +545,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JComboBox<String> jk;
+    private javax.swing.JButton kembali;
     private javax.swing.JMenuItem mahasiwa;
     public javax.swing.JTextField nama;
     public javax.swing.JTextField namaOr;
@@ -546,7 +553,5 @@ public class ControlMahasiswa extends javax.swing.JFrame {
     public javax.swing.JTextField notelp;
     public javax.swing.JTextField notelpOr;
     public javax.swing.JTextField rata;
-    private javax.swing.JButton simpan;
     // End of variables declaration//GEN-END:variables
 }
-

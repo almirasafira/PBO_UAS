@@ -43,7 +43,7 @@ public class Pembayaran extends javax.swing.JFrame {
     private void koneksi() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/pbo_uas", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_uas", "root", "");
             stat = con.createStatement();
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Koneksi gagal: " + e.getMessage());

@@ -18,23 +18,25 @@ import javax.swing.JOptionPane;
  *
  * @author user
  */
+//deklarasi
 public class MenuAdmin extends javax.swing.JFrame {
     
-    private Connection con;
+    private Connection con;//variabel
     private Statement stat;
     /**
      * Creates new form MenuAdmin
      */
+    
     public MenuAdmin() throws SQLException {
         initComponents();
         setTitle("MENU ADMIN");
         koneksi(); // Menginisialisasi koneksi saat form dibuat
     }
-    
+    //method
     private void koneksi() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_uas?autoReconnect=true&useSSL=false&connectTimeout=5000&socketTimeout=10000", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_uas", "root", "");
             stat = con.createStatement();
             System.out.println("Koneksi berhasil!");
         } catch (ClassNotFoundException | SQLException e) {
@@ -194,25 +196,25 @@ public class MenuAdmin extends javax.swing.JFrame {
 
     private void tabelMahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMahasiswaMouseClicked
         // TODO add your handling code here:
-        new AdminMahasiswa().setVisible(true);
+        new AdminMahasiswa().setVisible(true); //membuat instance
         dispose();
     }//GEN-LAST:event_tabelMahasiswaMouseClicked
 
     private void keuanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keuanganMouseClicked
         // TODO add your handling code here:
-        new Pembayaran().setVisible(true);
+        new Pembayaran().setVisible(true); //membuat instance
         dispose();
     }//GEN-LAST:event_keuanganMouseClicked
 
     private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
         // TODO add your handling code here:
-        new AdminLogin().setVisible(true);
+        new AdminLogin().setVisible(true); //membuat instance
         dispose();
     }//GEN-LAST:event_adminActionPerformed
 
     private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
         // TODO add your handling code here:
-        new MenuMahasiswa().setVisible(true);
+        new MenuMahasiswa().setVisible(true); //membuat instance
         dispose();
     }//GEN-LAST:event_mahasiwaActionPerformed
 
@@ -268,4 +270,3 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel tabelMahasiswaLabel;
     // End of variables declaration//GEN-END:variables
 }
-

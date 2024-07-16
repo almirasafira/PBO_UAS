@@ -10,16 +10,16 @@ import Mahasiswa.MenuMahasiswa;
  *
  * @author user
  */
+//deklarasi
 public class MenuUtama extends javax.swing.JFrame {
 
     /**
      * Creates new form menuUtama
      */
-    
+    //Konstruktor
     public MenuUtama() {
         initComponents();
         setTitle("MENU UTAMA");
-
     }
 
     /**
@@ -147,13 +147,13 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminMouseClicked
         // TODO add your handling code here:
-        new AdminLogin().setVisible(true);
+        new AdminLogin().setVisible(true); //membuat instance
         dispose();
     }//GEN-LAST:event_adminMouseClicked
 
     private void mahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mahasiswaMouseClicked
         // TODO add your handling code here:
-        new MenuMahasiswa().setVisible(true);
+        new MenuMahasiswa().setVisible(true); //membuat instance
         dispose();
     }//GEN-LAST:event_mahasiswaMouseClicked
 
@@ -202,4 +202,3 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JLabel mahasiswaLabel;
     // End of variables declaration//GEN-END:variables
 }
-
