@@ -4,6 +4,17 @@
  */
 package Mahasiswa;
 
+import Pembayaran.Pembayaran;
+import admin.AdminLogin;
+import admin.MenuAdmin;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -15,6 +26,27 @@ public class MenuMahasiswa extends javax.swing.JFrame {
      */
     public MenuMahasiswa() {
         initComponents();
+        koneksi();
+    }
+    private Connection con;
+    private Statement stat;
+    private String mahasiswaNISN;
+    
+    private void koneksi() {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/pbo_uas", "root", "");
+        stat = con.createStatement();
+        JOptionPane.showMessageDialog(null, "Koneksi berhasil");
+    } catch (ClassNotFoundException e) {
+        JOptionPane.showMessageDialog(null, "Driver tidak ditemukan: " + e.getMessage());
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Koneksi gagal: " + e.getMessage());
+    }
+}
+    
+    public void setMahasiswaNISN(String nisn) {
+        this.mahasiswaNISN = nisn;
     }
 
     /**
@@ -32,6 +64,10 @@ public class MenuMahasiswa extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        NavMenuUtama = new javax.swing.JMenu();
+        admin = new javax.swing.JMenuItem();
+        mahasiwa = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +148,28 @@ public class MenuMahasiswa extends javax.swing.JFrame {
 
         jLabel1.setText("MENU MAHASISWA");
 
+        NavMenuUtama.setText("Menu Utama");
+
+        admin.setText("Admin");
+        admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminActionPerformed(evt);
+            }
+        });
+        NavMenuUtama.add(admin);
+
+        mahasiwa.setText("Mahasiwa");
+        mahasiwa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mahasiwaActionPerformed(evt);
+            }
+        });
+        NavMenuUtama.add(mahasiwa);
+
+        jMenuBar1.add(NavMenuUtama);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +184,7 @@ public class MenuMahasiswa extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -135,16 +193,42 @@ public class MenuMahasiswa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        // TODO add your handling code here:
-        new formMahasiswa().setVisible(true);
-        dispose();
+        // Pastikan koneksi berhasil sebelum membuka formMahasiswa
+        if (con != null && stat != null) {
+            new formMahasiswa(this).setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Gagal membuka form Mahasiswa karena masalah koneksi");
+        }
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        // TODO add your handling code here:
-        //new pembayaran().setVisible(true);
-        dispose();
+        // Pastikan koneksi berhasil sebelum membuka form_bayar
+        if (con != null && stat != null) {
+            if (mahasiswaNISN == null) {
+                JOptionPane.showMessageDialog(this, "Silakan tambahkan mahasiswa terlebih dahulu melalui Form Mahasiswa.");
+                return;
+            }
+            MahasiswaPembayaran pembayaran = new MahasiswaPembayaran(mahasiswaNISN);
+            pembayaran.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Gagal membuka form Pembayaran karena masalah koneksi");
+        }
     }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+            // TODO add your handling code here:
+            new AdminLogin().setVisible(true);
+       
+        dispose();
+    }//GEN-LAST:event_adminActionPerformed
+
+    private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
+        // TODO add your handling code here:
+        new MenuMahasiswa().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_mahasiwaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,19 +258,43 @@ public class MenuMahasiswa extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MenuMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MenuMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MenuMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MenuMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuMahasiswa().setVisible(true);
             }
         });
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu NavMenuUtama;
+    private javax.swing.JMenuItem admin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JMenuItem mahasiwa;
     // End of variables declaration//GEN-END:variables
 }
