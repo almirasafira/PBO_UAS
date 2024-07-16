@@ -202,3 +202,4 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JLabel mahasiswaLabel;
     // End of variables declaration//GEN-END:variables
 }
+

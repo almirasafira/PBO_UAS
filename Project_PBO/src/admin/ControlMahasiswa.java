@@ -549,3 +549,4 @@ public class ControlMahasiswa extends javax.swing.JFrame {
     private javax.swing.JButton simpan;
     // End of variables declaration//GEN-END:variables
 }
+

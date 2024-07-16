@@ -288,3 +288,4 @@ public class AdminMahasiswa extends javax.swing.JFrame {
     private javax.swing.JLabel tabelLabel;
     // End of variables declaration//GEN-END:variables
 }
+

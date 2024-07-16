@@ -268,3 +268,4 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel tabelMahasiswaLabel;
     // End of variables declaration//GEN-END:variables
 }
+
