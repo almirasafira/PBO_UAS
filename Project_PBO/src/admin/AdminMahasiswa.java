@@ -4,10 +4,14 @@
  */
 package admin;
 
+import Mahasiswa.MenuMahasiswa;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -50,7 +54,6 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         NavMenuUtama = new javax.swing.JMenu();
         admin = new javax.swing.JMenuItem();
         mahasiwa = new javax.swing.JMenuItem();
-        kembali = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,8 +113,6 @@ public class AdminMahasiswa extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jMenuBar1.setBorder(null);
-
         NavMenuUtama.setText("Menu Utama");
 
         admin.setText("Admin");
@@ -123,11 +124,6 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         NavMenuUtama.add(admin);
 
         mahasiwa.setText("Mahasiwa");
-        mahasiwa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mahasiwaMouseClicked(evt);
-            }
-        });
         mahasiwa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mahasiwaActionPerformed(evt);
@@ -136,14 +132,6 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         NavMenuUtama.add(mahasiwa);
 
         jMenuBar1.add(NavMenuUtama);
-
-        kembali.setText("Kembali");
-        kembali.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                kembaliMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(kembali);
 
         setJMenuBar(jMenuBar1);
 
@@ -166,13 +154,13 @@ public class AdminMahasiswa extends javax.swing.JFrame {
     private void koneksi (){
         try {
          Class.forName("com.mysql.jdbc.Driver");
-         con=DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_db", "root", "");
+         con=DriverManager.getConnection("jdbc:mysql:/localhost:8111/pbo_uas", "root", "");
          stat=con.createStatement();
         } catch (Exception e) {
            JOptionPane.showMessageDialog(null, e);}
     }
     private void tabel (){
-        DefaultTableModel t= new DefaultTableModel();
+        DefaultTableModel t = new DefaultTableModel();
         t.addColumn("NISN");
         t.addColumn("Nama");
         t.addColumn("Jenis Kelamin");
@@ -181,24 +169,26 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         t.addColumn("No Telepon");
         t.addColumn("Asal Sekolah");
         t.addColumn("Rata Rata Nilai");
-        t.addColumn("Nama Orang Tua/Wali");
-        t.addColumn("No Telepon Orang Tua/Wali");
+        t.addColumn("Nama Orang Tua");
+        t.addColumn("No Telepon Orang Tua");
         tabel.setModel(t); 
-        try{ res= stat.executeQuery("SELECT * FROM mahasiswa");
+        try {
+            res = stat.executeQuery("SELECT * FROM mahasiswa");
             while (res.next()) {
-                t.addRow(new Object[]{ res.getString("NISN"),
-                res.getString("Nama"),
-                res.getString("Jenis Kelamin"),
-                res.getString("Agama"),
-                res.getString("Alamat"),
-                res.getString("No Telepon"),
-                res.getString("Asal Sekolah"),
-                res.getString("Rata Rata Nilai"),
-                res.getString("Nama Orang Tua/Wali"),
-                res.getString("No Telepon Orang Tua/Wali")
+                t.addRow(new Object[]{
+                    res.getString("nisn"),
+                    res.getString("nama"),
+                    res.getString("JenisKelamin"),
+                    res.getString("agama"),
+                    res.getString("alamat"),
+                    res.getString("NoHp"),
+                    res.getString("AsalSekolah"),
+                    res.getString("RataRataNilai"),
+                    res.getString("NamaOrangTua"),
+                    res.getString("NoOrangTua")
                 });
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
         }    
     }
@@ -239,29 +229,17 @@ public class AdminMahasiswa extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_mahasiswaActionPerformed
 
-    private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked
-        // TODO add your handling code here:
-        new MenuAdmin().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_kembaliMouseClicked
-
-    private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
-        // TODO add your handling code here:
-        //new ControlMahasiswa().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_mahasiwaActionPerformed
-
-    private void mahasiwaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mahasiwaMouseClicked
-        // TODO add your handling code here:
-        new ControlMahasiswa().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_mahasiwaMouseClicked
-
     private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
         // TODO add your handling code here:
         new AdminLogin().setVisible(true);
         dispose();
     }//GEN-LAST:event_adminActionPerformed
+
+    private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
+        // TODO add your handling code here:
+        new MenuMahasiswa().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_mahasiwaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,10 +282,10 @@ public class AdminMahasiswa extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JMenu kembali;
     private javax.swing.JButton mahasiswa;
     private javax.swing.JMenuItem mahasiwa;
     private javax.swing.JTable tabel;
     private javax.swing.JLabel tabelLabel;
     // End of variables declaration//GEN-END:variables
 }
+

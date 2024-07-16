@@ -5,6 +5,12 @@
 package admin;
 
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -13,12 +19,23 @@ import javax.swing.JOptionPane;
  */
 public class AdminLogin extends javax.swing.JFrame {
 
+        private Connection con;
+
     /**
      * Creates new form AdminLogin
      */
     public AdminLogin() {
         initComponents();
         setTitle("LOGIN ADMIN");
+        koneksi();
+    }
+    private void koneksi() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_uas", "root", "");
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Koneksi gagal: " + e.getMessage());
+        }
     }
 
     /**
@@ -45,18 +62,6 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel3.setText("LOGIN ADMIN");
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 255));
-
-        PasswordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordFieldActionPerformed(evt);
-            }
-        });
-
-        UsernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsernameFieldActionPerformed(evt);
-            }
-        });
 
         adminLabel.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         adminLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,14 +131,13 @@ public class AdminLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabel3)))
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,29 +152,31 @@ public class AdminLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UsernameFieldActionPerformed
-
-    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordFieldActionPerformed
-
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        // TODO add your handling code here:
-        String username="admin";
-        String password="admin";
-        if(username.equalsIgnoreCase(UsernameField.getText()) &&
-            password.equals(PasswordField.getText())) {
-            this.setVisible(false);
-            new MenuAdmin().setVisible(true);
-            javax.swing.JOptionPane.showMessageDialog(null, "ANDA BERHASIL LOGIN");
-            dispose();
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(null, "MAAF USER DAN PASSWORD ANDA SALAH", "Error", JOptionPane.ERROR_MESSAGE);
-            UsernameField.setText("");
-            PasswordField.setText("");
-            UsernameField.requestFocus();
+         // TODO add your handling code here:
+        String username = UsernameField.getText();
+        String password = new String(PasswordField.getPassword());
+
+        try {
+            String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                this.setVisible(false);
+                new MenuAdmin().setVisible(true);
+                JOptionPane.showMessageDialog(null, "ANDA BERHASIL LOGIN");
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "MAAF USER DAN PASSWORD ANDA SALAH", "Error", JOptionPane.ERROR_MESSAGE);
+                UsernameField.setText("");
+                PasswordField.setText("");
+                UsernameField.requestFocus();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Gagal login: " + e.getMessage());
         }
     }//GEN-LAST:event_LoginButtonActionPerformed
 
@@ -226,3 +232,4 @@ public class AdminLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
+

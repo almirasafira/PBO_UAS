@@ -4,6 +4,7 @@
  */
 package admin;
 
+import Mahasiswa.MenuMahasiswa;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -54,7 +55,6 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         namaOr = new javax.swing.JTextField();
         notelpOr = new javax.swing.JTextField();
         simpan = new javax.swing.JButton();
-        search = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -123,14 +123,6 @@ public class ControlMahasiswa extends javax.swing.JFrame {
             }
         });
 
-        search.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
-        search.setText("SEARCH");
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nama :");
@@ -157,7 +149,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Rata - rata Nilai :");
+        jLabel9.setText("Rata - rata :");
 
         jLabel10.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -230,14 +222,14 @@ public class ControlMahasiswa extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(namaOr, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(simpan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(delete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(search)))
+                        .addComponent(delete)
+                        .addGap(34, 34, 34)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -283,13 +275,12 @@ public class ControlMahasiswa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(notelpOr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(simpan)
-                    .addComponent(search)
                     .addComponent(edit)
                     .addComponent(delete))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         NavMenuUtama.setText("Menu Utama");
@@ -303,11 +294,6 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         NavMenuUtama.add(admin);
 
         mahasiwa.setText("Mahasiwa");
-        mahasiwa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mahasiwaMouseClicked(evt);
-            }
-        });
         mahasiwa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mahasiwaActionPerformed(evt);
@@ -346,12 +332,12 @@ public class ControlMahasiswa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void koneksi (){
-     try {
+        try {
          Class.forName("com.mysql.jdbc.Driver");
-         con=DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_db", "root", "");
+         con=DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_uas", "root", "");
          stat=con.createStatement();
-         } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, e);}   
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, e);}
     }
     private void kosongkan(){
         nisn.setText("");
@@ -369,22 +355,21 @@ public class ControlMahasiswa extends javax.swing.JFrame {
     
     private void nisnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nisnActionPerformed
         // TODO add your handling code here:
-        try{
-            res=stat.executeQuery("select * from mahasiswa where "+ "NISN='" + nisn.getText()
-                +"'" ); while (res.next())
-                {
-                    nama.setText(res.getString("Nama"));
-                    jk.setSelectedItem(res.getString("Jenis Kelamin"));
-                    agama.setText(res.getString("Agama"));
-                    alamat.setText(res.getString("Alamat"));
-                    notelp.setText(res.getString("Nomor Telepon"));
-                    aslsklh.setText(res.getString("Asal Sekolah"));
-                    rata.setText(res.getString("Rata"));
-                    namaOr.setText(res.getString("Nama Orang Tua/Wali"));
-                    notelpOr.setText(res.getString("Nomor Orang Tua/Wali"));
-                }    
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e);
+        try {
+            res = stat.executeQuery("SELECT * FROM mahasiswa WHERE NISN='" + nisn.getText() + "'");
+            while (res.next()) {
+                nama.setText(res.getString("Nama"));
+                jk.setSelectedItem(res.getString("JenisKelamin"));
+                agama.setText(res.getString("Agama"));
+                alamat.setText(res.getString("Alamat"));
+                notelp.setText(res.getString("NoTelepon"));
+                aslsklh.setText(res.getString("AsalSekolah"));
+                rata.setText(res.getString("RataRataNilai"));
+                namaOr.setText(res.getString("NamaOrangTua"));
+                notelpOr.setText(res.getString("NoTeleponOrangTua"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_nisnActionPerformed
 
@@ -400,7 +385,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         JOptionPane.YES_NO_OPTION);
         if (ok == 0) {
             try {
-                String sql = "UPDATE mahasiswa SET `NISN`=?, `Nama`=?, `Jenis Kelamin`=?, `Agama`=?, `Alamat`=?, `No Telepon`=?, `Asal Sekolah`=?, `Rata Rata Nilai`=?, `Nama Orang Tua/Wali`=?, `No Telepon Orang Tua/Wali`=?";
+                String sql = "UPDATE mahasiswa SET `NISN`=?, `Nama`=?, `JenisKelamin`=?, `Agama`=?, `Alamat`=?, `NoHp`=?, `AsalSekolah`=?, `RataRataNilai`=?, `NamaOrangTua`=?, `NoOrangTua`=?";
                 PreparedStatement st = con.prepareStatement(sql);
 
                 st.setString(1, nisn.getText());
@@ -448,34 +433,6 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        // TODO add your handling code here:
-    try {
-        // Mengambil data dari database berdasarkan NISN yang diinputkan
-        res = stat.executeQuery("SELECT * FROM mahasiswa WHERE NISN = '" + nisn.getText() + "'");
-        
-        // Memeriksa apakah ada hasil dari query
-        if (res.next()) { 
-            // Mengatur nilai komponen sesuai dengan hasil query
-            nama.setText(res.getString("Nama"));
-            jk.setSelectedItem(res.getString("Jenis Kelamin"));
-            agama.setText(res.getString("Agama"));
-            alamat.setText(res.getString("Alamat"));
-            notelp.setText(res.getString("No Telepon"));
-            aslsklh.setText(res.getString("Asal Sekolah"));
-            rata.setText(res.getString("Rata Rata Nilai"));
-            namaOr.setText(res.getString("Nama Orang Tua/Wali"));
-            notelpOr.setText(res.getString("No Telepon Orang Tua/Wali"));
-        } else {
-            // Menampilkan pesan jika NISN tidak ditemukan
-            JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan!");
-        }
-    } catch (Exception e) {
-        // Menampilkan pesan error jika terjadi kesalahan
-        JOptionPane.showMessageDialog(rootPane, e);
-    }
-    }//GEN-LAST:event_searchActionPerformed
-
     private void nisnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nisnKeyTyped
         // TODO add your handling code here:
         char mhs = evt.getKeyChar();
@@ -518,15 +475,9 @@ public class ControlMahasiswa extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_adminActionPerformed
 
-    private void mahasiwaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mahasiwaMouseClicked
-        // TODO add your handling code here:
-        new ControlMahasiswa().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_mahasiwaMouseClicked
-
     private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
         // TODO add your handling code here:
-        //new ControlMahasiswa().setVisible(true);
+        new MenuMahasiswa().setVisible(true);
         dispose();
     }//GEN-LAST:event_mahasiwaActionPerformed
 
@@ -595,7 +546,7 @@ public class ControlMahasiswa extends javax.swing.JFrame {
     public javax.swing.JTextField notelp;
     public javax.swing.JTextField notelpOr;
     public javax.swing.JTextField rata;
-    private javax.swing.JButton search;
     private javax.swing.JButton simpan;
     // End of variables declaration//GEN-END:variables
 }
+

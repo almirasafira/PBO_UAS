@@ -4,18 +4,42 @@
  */
 package admin;
 
+import Mahasiswa.MenuMahasiswa;
+import Pembayaran.Pembayaran;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
  */
 public class MenuAdmin extends javax.swing.JFrame {
-
+    
+    private Connection con;
+    private Statement stat;
     /**
      * Creates new form MenuAdmin
      */
-    public MenuAdmin() {
+    public MenuAdmin() throws SQLException {
         initComponents();
         setTitle("MENU ADMIN");
+        koneksi(); // Menginisialisasi koneksi saat form dibuat
+    }
+    
+    private void koneksi() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:8111/pbo_uas?autoReconnect=true&useSSL=false&connectTimeout=5000&socketTimeout=10000", "root", "");
+            stat = con.createStatement();
+            System.out.println("Koneksi berhasil!");
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Koneksi gagal: " + e.getMessage());
+        }
     }
 
     /**
@@ -30,7 +54,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         tabelMahasiswaLabel = new javax.swing.JLabel();
         tabelMahasiswa = new javax.swing.JPanel();
-        cari = new javax.swing.JPanel();
+        keuangan = new javax.swing.JPanel();
         keuanganLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -63,26 +87,26 @@ public class MenuAdmin extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        cari.addMouseListener(new java.awt.event.MouseAdapter() {
+        keuangan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cariMouseClicked(evt);
+                keuanganMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout cariLayout = new javax.swing.GroupLayout(cari);
-        cari.setLayout(cariLayout);
-        cariLayout.setHorizontalGroup(
-            cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout keuanganLayout = new javax.swing.GroupLayout(keuangan);
+        keuangan.setLayout(keuanganLayout);
+        keuanganLayout.setHorizontalGroup(
+            keuanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        cariLayout.setVerticalGroup(
-            cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        keuanganLayout.setVerticalGroup(
+            keuanganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
         keuanganLabel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         keuanganLabel.setForeground(new java.awt.Color(255, 255, 255));
-        keuanganLabel.setText("PENCARIAN");
+        keuanganLabel.setText("KEUANGAN");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -92,16 +116,16 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(tabelMahasiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(tabelMahasiswaLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(keuanganLabel)
-                        .addGap(61, 61, 61))))
+                        .addGap(57, 57, 57))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(tabelMahasiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addComponent(keuangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +136,7 @@ public class MenuAdmin extends javax.swing.JFrame {
                     .addComponent(keuanganLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(keuangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tabelMahasiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -147,9 +171,9 @@ public class MenuAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -174,11 +198,11 @@ public class MenuAdmin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_tabelMahasiswaMouseClicked
 
-    private void cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariMouseClicked
+    private void keuanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keuanganMouseClicked
         // TODO add your handling code here:
-        new ControlMahasiswa().setVisible(true);
+        new Pembayaran().setVisible(true);
         dispose();
-    }//GEN-LAST:event_cariMouseClicked
+    }//GEN-LAST:event_keuanganMouseClicked
 
     private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
         // TODO add your handling code here:
@@ -188,7 +212,7 @@ public class MenuAdmin extends javax.swing.JFrame {
 
     private void mahasiwaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mahasiwaActionPerformed
         // TODO add your handling code here:
-        //new Mahasiwa().setVisible(true);
+        new MenuMahasiswa().setVisible(true);
         dispose();
     }//GEN-LAST:event_mahasiwaActionPerformed
 
@@ -222,7 +246,11 @@ public class MenuAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuAdmin().setVisible(true);
+                try {
+                    new MenuAdmin().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -230,13 +258,14 @@ public class MenuAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu NavMenuUtama;
     private javax.swing.JMenuItem admin;
-    private javax.swing.JPanel cari;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel keuangan;
     private javax.swing.JLabel keuanganLabel;
     private javax.swing.JMenuItem mahasiwa;
     private javax.swing.JPanel tabelMahasiswa;
     private javax.swing.JLabel tabelMahasiswaLabel;
     // End of variables declaration//GEN-END:variables
 }
+
