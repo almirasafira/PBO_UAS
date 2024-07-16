@@ -4,7 +4,7 @@
  */
 package admin;
 
-import Mahasiswa.formMahasiswa;
+import Mahasiswa.MenuMahasiswa;
 
 /**
  *
@@ -15,8 +15,11 @@ public class MenuUtama extends javax.swing.JFrame {
     /**
      * Creates new form menuUtama
      */
+    
     public MenuUtama() {
         initComponents();
+        setTitle("MENU UTAMA");
+
     }
 
     /**
@@ -110,7 +113,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(mahasiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
@@ -121,14 +124,13 @@ public class MenuUtama extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(126, 126, 126))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +153,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void mahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mahasiswaMouseClicked
         // TODO add your handling code here:
-        new Mahasiswa().setVisible(true);
+        new MenuMahasiswa().setVisible(true);
         dispose();
     }//GEN-LAST:event_mahasiswaMouseClicked
 
